@@ -32,7 +32,10 @@ fun AmphibiansApp() {
                 .padding(innerPadding)
         ) {
             val amphibiansViewModel : AmphibiansViewModel = viewModel(factory = AmphibiansViewModel.Factory)
-            HomeScreen(amphibianUiState = amphibiansViewModel.amphibianUiState)
+            HomeScreen(
+                amphibianUiState = amphibiansViewModel.amphibianUiState,
+                retryAction = amphibiansViewModel::getAmphibiansData
+            )
         }
     }
 }

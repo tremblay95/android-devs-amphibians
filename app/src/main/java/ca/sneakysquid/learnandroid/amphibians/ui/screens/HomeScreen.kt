@@ -13,6 +13,7 @@ import ca.sneakysquid.learnandroid.amphibians.ui.theme.AmphibiansTheme
 @Composable
 fun HomeScreen(
     amphibianUiState: AmphibianUiState,
+    retryAction: () -> Unit,
     modifier: Modifier = Modifier,
     contentPadding: PaddingValues = PaddingValues(0.dp)
 ) {
@@ -23,7 +24,7 @@ fun HomeScreen(
             modifier = modifier.fillMaxSize(),
             contentPadding = contentPadding
         )
-        is AmphibianUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
+        is AmphibianUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize(), retryAction = retryAction)
     }
 }
 
@@ -34,7 +35,7 @@ fun HomeScreen(
 fun HomeScreenLoadingPreview()
 {
     AmphibiansTheme {
-        HomeScreen(AmphibianUiState.Loading)
+        HomeScreen(AmphibianUiState.Loading, {})
     }
 }
 
@@ -43,7 +44,7 @@ fun HomeScreenLoadingPreview()
 fun HomeScreenErrorPreview()
 {
     AmphibiansTheme {
-        HomeScreen(AmphibianUiState.Error)
+        HomeScreen(AmphibianUiState.Error, {})
     }
 }
 
@@ -52,6 +53,6 @@ fun HomeScreenErrorPreview()
 fun HomeScreenSuccessPreview()
 {
     AmphibiansTheme {
-        HomeScreen(AmphibianUiState.Success(listOf(Amphibian("Jeff", "", "", ""))))
+        HomeScreen(AmphibianUiState.Success(listOf(Amphibian("Jeff", "Toad", "Description of Jeff", ""))), {})
     }
 }
