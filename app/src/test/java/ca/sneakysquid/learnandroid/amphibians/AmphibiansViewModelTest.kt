@@ -22,7 +22,7 @@ class AmphibiansViewModelTest {
         )
 
         assertEquals(
-            AmphibianUiState.Success("Success: ${FakeDataSource.amphibiansList.size} amphibians retrieved."),
+            AmphibianUiState.Success(FakeDataSource.amphibiansList),
             amphibiansViewModel.amphibianUiState
         )
     }

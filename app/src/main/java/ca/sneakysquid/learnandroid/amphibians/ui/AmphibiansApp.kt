@@ -3,6 +3,7 @@
 package ca.sneakysquid.learnandroid.amphibians.ui
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.CenterAlignedTopAppBar
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.MaterialTheme
@@ -26,13 +27,12 @@ fun AmphibiansApp() {
         topBar = { AmphibiansTopAppBar() }
     ) { innerPadding ->
         Surface (
-            modifier = Modifier.fillMaxSize()
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
         ) {
             val amphibiansViewModel : AmphibiansViewModel = viewModel(factory = AmphibiansViewModel.Factory)
-            HomeScreen(
-                amphibianUiState = amphibiansViewModel.amphibianUiState,
-                contentPadding = innerPadding
-            )
+            HomeScreen(amphibianUiState = amphibiansViewModel.amphibianUiState)
         }
     }
 }

@@ -1,28 +1,29 @@
 package ca.sneakysquid.learnandroid.amphibians.ui.screens
 
-import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import ca.sneakysquid.learnandroid.amphibians.ui.screens.ResultScreen.AmphibianCard
+import androidx.compose.ui.unit.dp
+import ca.sneakysquid.learnandroid.amphibians.model.Amphibian
+import ca.sneakysquid.learnandroid.amphibians.ui.screens.resultscreen.AmphibianCard
 
 @Composable
-fun ResultScreen(amphibians: String, modifier: Modifier = Modifier) {
-    Box(
-        contentAlignment = Alignment.Center,
-        modifier = modifier
+fun ResultScreen(
+    amphibians: List<Amphibian>,
+    modifier: Modifier = Modifier,
+    contentPadding: PaddingValues = PaddingValues(0.dp)
+) {
+    LazyColumn(
+        verticalArrangement = Arrangement.spacedBy(4.dp),
+        modifier = modifier.padding(horizontal = 4.dp),
+        contentPadding = contentPadding
     ) {
-        Text(
-            text = amphibians
-        )
-    }
-    /*val amphibians = List(10) { it }
-    LazyColumn() {
-        items(amphibians) {
-            AmphibianCard("Amphibian #$it")
+        items(amphibians) { amphibian ->
+            AmphibianCard(amphibian)
         }
-    }*/
+    }
 }

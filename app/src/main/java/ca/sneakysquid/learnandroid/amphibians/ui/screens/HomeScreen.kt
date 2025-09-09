@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import ca.sneakysquid.learnandroid.amphibians.model.Amphibian
 import ca.sneakysquid.learnandroid.amphibians.ui.theme.AmphibiansTheme
 
 
@@ -18,7 +19,9 @@ fun HomeScreen(
     when (amphibianUiState) {
         is AmphibianUiState.Loading -> LoadingScreen(modifier = modifier.fillMaxSize())
         is AmphibianUiState.Success -> ResultScreen(
-            amphibianUiState.amphibians, modifier = modifier.fillMaxSize()
+            amphibianUiState.amphibians,
+            modifier = modifier.fillMaxSize(),
+            contentPadding = contentPadding
         )
         is AmphibianUiState.Error -> ErrorScreen(modifier = modifier.fillMaxSize())
     }
@@ -49,6 +52,6 @@ fun HomeScreenErrorPreview()
 fun HomeScreenSuccessPreview()
 {
     AmphibiansTheme {
-        HomeScreen(AmphibianUiState.Success("Placeholder"))
+        HomeScreen(AmphibianUiState.Success(listOf(Amphibian("Jeff", "", "", ""))))
     }
 }

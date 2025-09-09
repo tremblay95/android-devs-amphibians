@@ -11,12 +11,13 @@ import androidx.lifecycle.viewmodel.initializer
 import androidx.lifecycle.viewmodel.viewModelFactory
 import ca.sneakysquid.learnandroid.amphibians.AmphibiansApplication
 import ca.sneakysquid.learnandroid.amphibians.data.AmphibiansDataRepository
+import ca.sneakysquid.learnandroid.amphibians.model.Amphibian
 import kotlinx.coroutines.launch
 import retrofit2.HttpException
 import java.io.IOException
 
 sealed interface AmphibianUiState {
-    data class Success(val amphibians : String) : AmphibianUiState
+    data class Success(val amphibians : List<Amphibian>) : AmphibianUiState
     object Error : AmphibianUiState
     object Loading : AmphibianUiState
 }
@@ -34,10 +35,7 @@ class AmphibiansViewModel(private val amphibiansDataRepository: AmphibiansDataRe
             amphibianUiState = AmphibianUiState.Loading
 
             amphibianUiState = try {
-                val listResult = amphibiansDataRepository.getAmphibiansData()
-                AmphibianUiState.Success(
-                    "Success: ${listResult.size} amphibians retrieved."
-                )
+                AmphibianUiState.Success(amphibiansDataRepository.getAmphibiansData())
             } catch (e : IOException) {
                 AmphibianUiState.Error
             } catch (e : HttpException) {
