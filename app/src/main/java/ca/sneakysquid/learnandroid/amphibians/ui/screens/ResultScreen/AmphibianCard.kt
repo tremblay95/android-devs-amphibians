@@ -1,4 +1,4 @@
-package ca.sneakysquid.learnandroid.amphibians.ui.screens.HomeScreen
+package ca.sneakysquid.learnandroid.amphibians.ui.screens.ResultScreen
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
